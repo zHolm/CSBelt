@@ -1,0 +1,79 @@
+@using Belt.Models
+@model Product
+<div class="row">
+    <div class="col-5">
+        <h1>@Model.Name</h1>
+    </div>
+    <div class="col-5">
+       <h4>Created By: @Model.User.FirstName</h4>
+    </div>
+    <div class="col-2">
+       
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        @{
+            var remaining = Model.Deadline - DateTime.Now;
+        }
+        <h6>Time Remaining:  @remaining.ToString("dd") days</h6>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <p>
+            @Model.Description
+        </p>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <h5>Current Highest Bid:</h5>
+    </div>
+    <div class="col">
+        @if(Model.HighestBid !=null)
+        {
+            <h5>
+            @Model.HighestBid.User.FirstName 
+            @Model.HighestBid.User.LastName
+            </h5>
+        }
+        else
+        {
+            <h5>No Bidders</h5>
+        }
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        @{
+            var StartingBid = Math.Round(Model.StartingBid, 0);
+        }
+        @if(Model.HighestBid != null)
+        {
+            <h5>
+                $@Model.HighestBid.BidPrice
+            </h5>
+        }
+        else
+        {
+            <h5>Starting Bid: $@StartingBid</h5>
+        }
+    </div>
+    <div class="col">
+
+    </div>
+</div>
+<div class="row m-5 text-center">
+    <div class="col">
+        <p>New bids must be atleast $5 over current highest bid.</p>
+        @{
+            Bid Bid = new Bid();
+            Bid.UserId = ViewBag.UserId;
+            Bid.ProductId = Model.ProductId;
+        }
+        <partial name="BidPartial" model="Bid"/>
+    </div>
+</div>
+
+

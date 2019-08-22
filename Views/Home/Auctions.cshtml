@@ -1,0 +1,73 @@
+@using Belt.Models
+@model List<Product>
+<div class="row">
+    <div class="col-10">
+        <h1>Current Auctions</h1>
+    </div>
+    <div class="col-2">
+        Hello @ViewBag.FirstName
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <table class="table text-light">
+            <thead>
+                <tr>
+                    <th scope="col">Product</th>
+                    <th scope="col">Seller</th>
+                    <th scope="col">Top Bid</th>
+                    <th scope="col">Time Remaining</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var p in Model)
+                {
+                    <tr>
+                        <td>
+                            <a asp-action="ViewAuction" asp-controller="Home" asp-route-ProductId=@p.ProductId>
+                                @p.Name
+                            </a>
+                        </td>
+                        <td>
+                            @p.User.FirstName
+                        </td>
+                        @if(p.HighestBid != null)
+                        {
+                            <td>
+                                $@p.HighestBid.BidPrice
+                            </td>
+                        }
+                        else
+                        {
+                            <td>No bids</td>
+                        }
+                        <td>
+                            @{
+                                var remaining = p.Deadline - DateTime.Now;
+                            }
+                            @remaining.ToString("dd") days
+                        </td>
+                        <td>
+                            @if(ViewBag.UserId == p.UserId)
+                            {
+                                <a asp-action="RemoveAuction" asp-controller="Home" asp-route-ProductId=@p.ProductId>Delete</a>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <a class="btn btn-info" asp-action="NewAuction" asp-controller="Home" >New Auction</a>
+    </div>
+    <div class="col">
+        @{
+            var wallet = Math.Round(@ViewBag.Wallet,2);
+        }
+        Your Current Wallet: $@wallet
+    </div>
+</div>
