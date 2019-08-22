@@ -1,5 +1,6 @@
 # ignores any file named "secret.txt"
-appsetting.json
+appsettings.json
+appsettings.Development.json
 secret.txt
 # ignores any directory named "secrets"
 secrets/
