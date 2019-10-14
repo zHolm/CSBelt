@@ -3,8 +3,8 @@
 
 <form asp-action="MakeBid" asp-controller="Home">
     <span asp-validation-for="BidPrice"></span>
-    <input asp-for="BidPrice"/>
+    <input asp-for="BidPrice" type="number" max="100000"/>
     <input type="hidden" asp-for="ProductId" value="@Model.ProductId"/>
     <input type="hidden" asp-for="UserId" value="@Model.UserId"/>
-    <button>Bid</button>
+    <button class="btn btn-info">Bid</button>
 </form>

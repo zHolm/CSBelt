@@ -12155,11 +12155,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\zxaka\\Desktop\\CSharp_Belt\\Belt\\Belt.csproj",
+      "projectUniqueName": "C:\\Users\\zxaka\\Desktop\\Coding_Dojo\\CSharp_Belt\\Belt\\Belt.csproj",
       "projectName": "Belt",
-      "projectPath": "C:\\Users\\zxaka\\Desktop\\CSharp_Belt\\Belt\\Belt.csproj",
+      "projectPath": "C:\\Users\\zxaka\\Desktop\\Coding_Dojo\\CSharp_Belt\\Belt\\Belt.csproj",
       "packagesPath": "C:\\Users\\zxaka\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\zxaka\\Desktop\\CSharp_Belt\\Belt\\obj\\",
+      "outputPath": "C:\\Users\\zxaka\\Desktop\\Coding_Dojo\\CSharp_Belt\\Belt\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

@@ -4,39 +4,36 @@
     <div class="col-10">
         <h1>New Auction</h1>
     </div>
-    <div class="col-2">
-        [Back to auctions]
-    </div>
 </div>
 <form asp-action="CreateAuction" asp-controller="Home" method=post>
     <div class="row">
         <div class="col">
-            <span asp-validation-for="Name"></span><br>
+            <span class="text-danger" asp-validation-for="Name"></span><br>
             <label asp-for="Name"></label><br>
-            <input asp-for="Name"/>
+            <input class="form-control w-50" asp-for="Name"/>
         </div>
         <div class="col">
-            <span asp-validation-for="StartingBid"></span><br>
+            <span class="text-danger" asp-validation-for="StartingBid "></span><br>
             <label asp-for="StartingBid"></label><br>
-            <input asp-for="StartingBid"/>
+            <input class="form-control w-50" asp-for="StartingBid" type="number" max="100000"/>
         </div>
     </div>
     <div class="row">
         <div class="col">
-            <span asp-validation-for="Description"></span><br>
+            <span class="text-danger" asp-validation-for="Description"></span><br>
             <label asp-for="Description"></label><br>
-            <input asp-for="Description"/>
+            <input class="form-control w-50" asp-for="Description"/>
         </div>
         <div class="col">
-            <span asp-validation-for="Deadline"></span><br>
+            <span class="text-danger" asp-validation-for="Deadline"></span><br>
             <label asp-for="Deadline"></label><br>
-            <input asp-for="Deadline"/>
+            <input class="form-control w-50" asp-for="Deadline"/>
         </div>
             
     </div>
-    <div class="row">
+    <div class="row mt-3">
         <div class="col">
-            <button>Create Auction</button>
+            <button class="btn btn-success">Create Auction</button>
         </div>
         <div class="col"></div>
     </div>

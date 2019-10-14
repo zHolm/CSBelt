@@ -12,21 +12,23 @@ namespace Belt.Models
         public int ProductId {get;set;}
        
         [Required]
-        [MinLength(4)] 
+        [MinLength(4, ErrorMessage="Auction item name must be atleast 4 characters")] 
+        [Display(Name="Auction Item")]
         public string Name {get;set;}
 
         [Required]
-        [MinLength(11)]
+        [MinLength(11, ErrorMessage="Description must be atleast 11 characters")]
         public string Description {get;set;}
         
-        [Required]
-        [Range(0.01, Int64.MaxValue)]
+        [Required(ErrorMessage="Starting bid must be between $1 and $100,000")]
+        [Range(1, 100000)]
+        [Display(Name = "Listing Price (USD)")]
         public decimal  StartingBid {get;set;}
         
         [Required]
         [Future]
         [DataType(DataType.Date)]
-        [Display(Name = "End Date")] 
+        [Display(Name = "Auction End Date")] 
         public DateTime Deadline {get;set;}
         
         [Required]

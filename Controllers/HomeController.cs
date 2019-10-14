@@ -148,6 +148,7 @@ namespace Belt.Controllers
             return LogginUser;
         }
 
+        //Get a list of expired auctions
         private List<Product> GetExpired()
         {
             return dbContext.products
@@ -156,19 +157,31 @@ namespace Belt.Controllers
                 .ToList();
         }
 
+        //Tranfers funds from buyer to seller when auctions expired
         private void Transfer()
         {
+            //get list of expired autions
             List<Product> Expired = GetExpired();
+
+            //iterate through expired autions
             foreach(var p in Expired)
             {
-                int WinnerId = p.HighestBid.UserId;
-                int ListerId = p.UserId;
-                User Winner = dbContext.Users
-                    .FirstOrDefault(u=>u.UserId==WinnerId);
-                User Lister = dbContext.Users
-                    .FirstOrDefault(u=>u.UserId==ListerId);
-                Winner.Wallet -= p.HighestBid.BidPrice;
-                Lister.Wallet += p.HighestBid.BidPrice;
+                //if bidded on: transfer funds and remove acution
+                if(p.HighestBid != null)
+                {
+                    int WinnerId = p.HighestBid.UserId;
+                    int ListerId = p.UserId;
+                    User Winner = dbContext.Users
+                        .FirstOrDefault(u=>u.UserId==WinnerId);
+                    User Lister = dbContext.Users
+                        .FirstOrDefault(u=>u.UserId==ListerId);
+                    Winner.Wallet -= p.HighestBid.BidPrice;
+                    Lister.Wallet += p.HighestBid.BidPrice;
+                } 
+                else //if no bids: log and remove
+                {
+                    System.Console.WriteLine("");
+                }
                 dbContext.products.Remove(p);
                 dbContext.SaveChanges();
             }
